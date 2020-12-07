@@ -1,9 +1,11 @@
 import { getInputDirection } from "./input.js";
 
-export const SNAKE_SPEED = 5; //How many times per second the snake moves 
+export const SNAKE_SPEED = 7; //How many times per second the snake moves 
 
 const snakeBody = [{x: 11, y: 11}]; // position of snake on grid
 let newSegments = 0;
+
+
 
 //currently writing function for the snake body to be updated as it moves.... 
 export function update() {
@@ -16,8 +18,8 @@ export function update() {
 
     //Updating the head to where we are moving 
     
-    snakeBody[0].x += inputDirection.x                // X Position: head is at position 0 in the snake body, adding to it some movement. 
-    snakeBody[0].y += inputDirection.y                // Y Position  Y means to move down the board, -Y means to move up the board 
+    snakeBody[0].x += inputDirection.x          // X Position: head is at position 0 in the snake body, adding to it some movement. 
+    snakeBody[0].y += inputDirection.y          // Y Position  Y means to move down the board, -Y means to move up the board 
 }
 
 
@@ -33,14 +35,25 @@ export function draw(gameBoard) {
     })
 }
 
+
+
 export function expandSnake(amount) {
     newSegments += amount
 }
 
-export function onSnake(position) {
-    return snakeBody.some(segment => {
+export function onSnake(position, {ignoreHead = false} = { } ) {
+    return snakeBody.some((segment, index) => {
+        if (ignoreHead && index === 0) return false
         return equalPositions(segment, position)
     })
+}
+
+export function getSnakeHead() {
+    return snakeBody[0]
+}
+
+export function snakeIntersection(){
+    return onSnake(snakeBody[0], {ignoreHead: true})
 }
 
 function equalPositions(post1, post2) {

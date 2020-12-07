@@ -6,6 +6,12 @@ body {
     align-items: center;
     margin: 0;
     background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.info{
+    width: 20%;
 }
 
 #game-board{
@@ -18,11 +24,13 @@ body {
 }
 
 .snake{
-    background-color: cornflowerblue;
-    border: .25vmin solid black;
+    border-radius: 10px;
+    background-color: lightgreen;
+    border: .25vmin solid rgba(0, 0, 0);
 }
 
 .food{
-    background-color: yellow;
+    border-radius: 50%;
+    background-color: red;
     border: .25vmin solid black;
 }
